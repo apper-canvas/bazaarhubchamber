@@ -1,0 +1,423 @@
+[
+  {
+    "Id": 1,
+    "title": "Premium Wireless Headphones",
+    "description": "High-quality wireless headphones with active noise cancellation, 30-hour battery life, and premium sound quality. Perfect for music lovers and professionals.",
+    "price": 8999,
+    "originalPrice": 14999,
+    "category": "Electronics",
+    "subcategory": "Audio",
+    "images": ["https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500", "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=500"],
+    "rating": 4.5,
+    "reviewCount": 1234,
+    "inStock": true,
+    "specifications": {
+      "Brand": "AudioPro",
+      "Connectivity": "Bluetooth 5.0",
+      "Battery Life": "30 hours",
+      "Noise Cancellation": "Active",
+      "Weight": "250g"
+    },
+    "brand": "AudioPro"
+  },
+  {
+    "Id": 2,
+    "title": "Smart Watch Series 7",
+    "description": "Advanced smartwatch with fitness tracking, heart rate monitor, GPS, and water resistance. Stay connected and healthy.",
+    "price": 24999,
+    "originalPrice": 34999,
+    "category": "Electronics",
+    "subcategory": "Wearables",
+    "images": ["https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500", "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500"],
+    "rating": 4.7,
+    "reviewCount": 856,
+    "inStock": true,
+    "specifications": {
+      "Brand": "TechTime",
+      "Display": "1.9 inch AMOLED",
+      "Battery Life": "7 days",
+      "Water Resistance": "5 ATM",
+      "Sensors": "Heart Rate, SpO2, GPS"
+    },
+    "brand": "TechTime"
+  },
+  {
+    "Id": 3,
+    "title": "Professional Camera Kit",
+    "description": "Complete DSLR camera kit with 18-55mm and 55-200mm lenses, camera bag, and accessories. Perfect for photography enthusiasts.",
+    "price": 54999,
+    "originalPrice": 74999,
+    "category": "Electronics",
+    "subcategory": "Cameras",
+    "images": ["https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=500", "https://images.unsplash.com/photo-1606980707093-73d36d8d0c03?w=500"],
+    "rating": 4.8,
+    "reviewCount": 445,
+    "inStock": true,
+    "specifications": {
+      "Brand": "PhotoMaster",
+      "Sensor": "24.2 MP APS-C",
+      "ISO Range": "100-25600",
+      "Video": "4K at 30fps",
+      "Screen": "3.2 inch touchscreen"
+    },
+    "brand": "PhotoMaster"
+  },
+  {
+    "Id": 4,
+    "title": "Gaming Laptop Pro",
+    "description": "High-performance gaming laptop with RTX 4060 graphics, 16GB RAM, 512GB SSD, and 144Hz display. Dominate every game.",
+    "price": 89999,
+    "originalPrice": 119999,
+    "category": "Electronics",
+    "subcategory": "Computers",
+    "images": ["https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500", "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=500"],
+    "rating": 4.6,
+    "reviewCount": 678,
+    "inStock": true,
+    "specifications": {
+      "Brand": "GameForce",
+      "Processor": "Intel Core i7-12700H",
+      "Graphics": "NVIDIA RTX 4060 6GB",
+      "RAM": "16GB DDR5",
+      "Storage": "512GB NVMe SSD",
+      "Display": "15.6 inch 144Hz"
+    },
+    "brand": "GameForce"
+  },
+  {
+    "Id": 5,
+    "title": "Wireless Mechanical Keyboard",
+    "description": "Premium mechanical keyboard with RGB lighting, hot-swappable switches, and wireless connectivity. Perfect for gamers and typists.",
+    "price": 6999,
+    "originalPrice": 9999,
+    "category": "Electronics",
+    "subcategory": "Accessories",
+    "images": ["https://images.unsplash.com/photo-1595225476474-87563907a212?w=500", "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500"],
+    "rating": 4.4,
+    "reviewCount": 1567,
+    "inStock": true,
+    "specifications": {
+      "Brand": "KeyMaster",
+      "Switch Type": "Hot-swappable",
+      "Connectivity": "Bluetooth & 2.4GHz",
+      "Battery Life": "40 hours",
+      "Lighting": "RGB per-key"
+    },
+    "brand": "KeyMaster"
+  },
+  {
+    "Id": 6,
+    "title": "4K Ultra HD Smart TV 55 inch",
+    "description": "Stunning 4K smart TV with HDR support, built-in streaming apps, and voice control. Transform your entertainment experience.",
+    "price": 44999,
+    "originalPrice": 64999,
+    "category": "Electronics",
+    "subcategory": "Television",
+    "images": ["https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500", "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=500"],
+    "rating": 4.5,
+    "reviewCount": 892,
+    "inStock": true,
+    "specifications": {
+      "Brand": "VisionTech",
+      "Screen Size": "55 inches",
+      "Resolution": "4K Ultra HD",
+      "HDR": "HDR10+",
+      "Smart Features": "Android TV"
+    },
+    "brand": "VisionTech"
+  },
+  {
+    "Id": 7,
+    "title": "Running Shoes Pro Series",
+    "description": "Lightweight running shoes with advanced cushioning, breathable mesh, and superior grip. Perfect for marathon runners.",
+    "price": 4999,
+    "originalPrice": 7999,
+    "category": "Fashion",
+    "subcategory": "Footwear",
+    "images": ["https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500", "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=500"],
+    "rating": 4.6,
+    "reviewCount": 2341,
+    "inStock": true,
+    "specifications": {
+      "Brand": "RunFast",
+      "Material": "Breathable mesh",
+      "Sole": "Rubber",
+      "Weight": "220g",
+      "Available Sizes": "6-12"
+    },
+    "brand": "RunFast"
+  },
+  {
+    "Id": 8,
+    "title": "Designer Leather Backpack",
+    "description": "Premium leather backpack with laptop compartment, multiple pockets, and water-resistant coating. Style meets functionality.",
+    "price": 3999,
+    "originalPrice": 6999,
+    "category": "Fashion",
+    "subcategory": "Bags",
+    "images": ["https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500", "https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?w=500"],
+    "rating": 4.3,
+    "reviewCount": 567,
+    "inStock": true,
+    "specifications": {
+      "Brand": "UrbanStyle",
+      "Material": "Genuine Leather",
+      "Capacity": "30L",
+      "Laptop Size": "Up to 15.6 inch",
+      "Features": "Water-resistant"
+    },
+    "brand": "UrbanStyle"
+  },
+  {
+    "Id": 9,
+    "title": "Coffee Maker with Grinder",
+    "description": "Premium coffee maker with built-in grinder, programmable settings, and thermal carafe. Wake up to fresh coffee every morning.",
+    "price": 12999,
+    "originalPrice": 17999,
+    "category": "Home",
+    "subcategory": "Kitchen",
+    "images": ["https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=500", "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500"],
+    "rating": 4.7,
+    "reviewCount": 1123,
+    "inStock": true,
+    "specifications": {
+      "Brand": "BrewMaster",
+      "Capacity": "12 cups",
+      "Grinder": "Burr grinder",
+      "Features": "Programmable, Auto-shutoff",
+      "Carafe": "Thermal stainless steel"
+    },
+    "brand": "BrewMaster"
+  },
+  {
+    "Id": 10,
+    "title": "Air Purifier with HEPA Filter",
+    "description": "Advanced air purifier with true HEPA filter, removes 99.97% of airborne particles. Breathe cleaner air at home.",
+    "price": 8999,
+    "originalPrice": 12999,
+    "category": "Home",
+    "subcategory": "Appliances",
+    "images": ["https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=500", "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500"],
+    "rating": 4.5,
+    "reviewCount": 789,
+    "inStock": true,
+    "specifications": {
+      "Brand": "PureAir",
+      "Coverage": "500 sq ft",
+      "Filter Type": "True HEPA",
+      "CADR": "300 m³/h",
+      "Noise Level": "25-55 dB"
+    },
+    "brand": "PureAir"
+  },
+  {
+    "Id": 11,
+    "title": "Yoga Mat Premium",
+    "description": "Extra thick yoga mat with non-slip surface, eco-friendly materials, and carrying strap. Perfect for all yoga practices.",
+    "price": 1499,
+    "originalPrice": 2499,
+    "category": "Sports",
+    "subcategory": "Fitness",
+    "images": ["https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=500", "https://images.unsplash.com/photo-1592432678016-e910b452f9a2?w=500"],
+    "rating": 4.4,
+    "reviewCount": 1890,
+    "inStock": true,
+    "specifications": {
+      "Brand": "ZenFit",
+      "Thickness": "8mm",
+      "Material": "TPE eco-friendly",
+      "Size": "183 x 61 cm",
+      "Features": "Non-slip, Odor-free"
+    },
+    "brand": "ZenFit"
+  },
+  {
+    "Id": 12,
+    "title": "Adjustable Dumbbell Set",
+    "description": "Space-saving adjustable dumbbells with quick-change weight system. Complete home gym solution.",
+    "price": 9999,
+    "originalPrice": 14999,
+    "category": "Sports",
+    "subcategory": "Fitness",
+    "images": ["https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500", "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=500"],
+    "rating": 4.6,
+    "reviewCount": 645,
+    "inStock": true,
+    "specifications": {
+      "Brand": "PowerFit",
+      "Weight Range": "5-25 kg per dumbbell",
+      "Material": "Steel with rubber coating",
+      "Adjustments": "Quick-lock system",
+      "Space-saving": "Compact design"
+    },
+    "brand": "PowerFit"
+  },
+  {
+    "Id": 13,
+    "title": "Bluetooth Speaker Waterproof",
+    "description": "Portable waterproof Bluetooth speaker with 20-hour battery, powerful bass, and rugged design. Perfect for outdoor adventures.",
+    "price": 2999,
+    "originalPrice": 4999,
+    "category": "Electronics",
+    "subcategory": "Audio",
+    "images": ["https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500", "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=500"],
+    "rating": 4.5,
+    "reviewCount": 1456,
+    "inStock": true,
+    "specifications": {
+      "Brand": "SoundWave",
+      "Battery Life": "20 hours",
+      "Waterproof": "IPX7",
+      "Connectivity": "Bluetooth 5.0",
+      "Output": "20W"
+    },
+    "brand": "SoundWave"
+  },
+  {
+    "Id": 14,
+    "title": "Office Chair Ergonomic",
+    "description": "Premium ergonomic office chair with lumbar support, adjustable armrests, and breathable mesh back. All-day comfort.",
+    "price": 14999,
+    "originalPrice": 22999,
+    "category": "Home",
+    "subcategory": "Furniture",
+    "images": ["https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=500", "https://images.unsplash.com/photo-1592078615290-033ee584e267?w=500"],
+    "rating": 4.7,
+    "reviewCount": 934,
+    "inStock": true,
+    "specifications": {
+      "Brand": "ComfortPro",
+      "Material": "Mesh back, foam seat",
+      "Weight Capacity": "120 kg",
+      "Adjustments": "Height, armrests, tilt",
+      "Warranty": "2 years"
+    },
+    "brand": "ComfortPro"
+  },
+  {
+    "Id": 15,
+    "title": "Instant Pot Multi-Cooker",
+    "description": "7-in-1 programmable multi-cooker with pressure cooking, slow cooking, rice cooker, and more. One pot, endless possibilities.",
+    "price": 7999,
+    "originalPrice": 11999,
+    "category": "Home",
+    "subcategory": "Kitchen",
+    "images": ["https://images.unsplash.com/photo-1585515320310-259814833e62?w=500", "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=500"],
+    "rating": 4.8,
+    "reviewCount": 2156,
+    "inStock": true,
+    "specifications": {
+      "Brand": "QuickChef",
+      "Capacity": "6 quarts",
+      "Functions": "7-in-1",
+      "Material": "Stainless steel",
+      "Safety": "10 safety features"
+    },
+    "brand": "QuickChef"
+  },
+  {
+    "Id": 16,
+    "title": "LED Desk Lamp Smart",
+    "description": "Smart LED desk lamp with adjustable brightness, color temperature, USB charging port, and touch controls.",
+    "price": 2499,
+    "originalPrice": 3999,
+    "category": "Home",
+    "subcategory": "Lighting",
+    "images": ["https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500", "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=500"],
+    "rating": 4.4,
+    "reviewCount": 567,
+    "inStock": true,
+    "specifications": {
+      "Brand": "LightTech",
+      "Brightness": "10 levels",
+      "Color Temperature": "3000K-6000K",
+      "Features": "USB charging, Touch control",
+      "Power": "12W LED"
+    },
+    "brand": "LightTech"
+  },
+  {
+    "Id": 17,
+    "title": "Wireless Mouse Ergonomic",
+    "description": "Ergonomic wireless mouse with silent clicks, adjustable DPI, and long battery life. Comfortable for all-day use.",
+    "price": 999,
+    "originalPrice": 1999,
+    "category": "Electronics",
+    "subcategory": "Accessories",
+    "images": ["https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500", "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=500"],
+    "rating": 4.3,
+    "reviewCount": 2345,
+    "inStock": true,
+    "specifications": {
+      "Brand": "ClickMaster",
+      "Connectivity": "2.4GHz wireless",
+      "DPI": "800-3200 adjustable",
+      "Battery Life": "12 months",
+      "Silent Clicks": "Yes"
+    },
+    "brand": "ClickMaster"
+  },
+  {
+    "Id": 18,
+    "title": "Power Bank 20000mAh",
+    "description": "High-capacity power bank with fast charging, dual USB ports, and LED display. Never run out of battery.",
+    "price": 1999,
+    "originalPrice": 2999,
+    "category": "Electronics",
+    "subcategory": "Accessories",
+    "images": ["https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=500", "https://images.unsplash.com/photo-1624823183493-ed5832f48f18?w=500"],
+    "rating": 4.5,
+    "reviewCount": 1678,
+    "inStock": true,
+    "specifications": {
+      "Brand": "ChargeMax",
+      "Capacity": "20000mAh",
+      "Output": "2.1A dual USB",
+      "Input": "Type-C & Micro USB",
+      "Display": "LED battery indicator"
+    },
+    "brand": "ChargeMax"
+  },
+  {
+    "Id": 19,
+    "title": "Digital Bathroom Scale",
+    "description": "Smart bathroom scale with body composition analysis, app connectivity, and precise measurements. Track your fitness journey.",
+    "price": 1799,
+    "originalPrice": 2999,
+    "category": "Home",
+    "subcategory": "Health",
+    "images": ["https://images.unsplash.com/photo-1575456779834-1bcb8d7e742e?w=500", "https://images.unsplash.com/photo-1609081219090-a6d81d3085bf?w=500"],
+    "rating": 4.4,
+    "reviewCount": 890,
+    "inStock": true,
+    "specifications": {
+      "Brand": "HealthTrack",
+      "Capacity": "180 kg",
+      "Accuracy": "0.1 kg",
+      "Features": "Body composition, App sync",
+      "Display": "LED"
+    },
+    "brand": "HealthTrack"
+  },
+  {
+    "Id": 20,
+    "title": "Resistance Bands Set",
+    "description": "Complete resistance bands set with 5 levels, handles, door anchor, and carry bag. Full-body workout anywhere.",
+    "price": 899,
+    "originalPrice": 1499,
+    "category": "Sports",
+    "subcategory": "Fitness",
+    "images": ["https://images.unsplash.com/photo-1598632640487-6ea4a4e8b963?w=500", "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500"],
+    "rating": 4.6,
+    "reviewCount": 1234,
+    "inStock": true,
+    "specifications": {
+      "Brand": "FlexFit",
+      "Levels": "5 resistance levels",
+      "Material": "Natural latex",
+      "Includes": "Handles, door anchor, bag",
+      "Weight Range": "10-30 lbs equivalent"
+    },
+    "brand": "FlexFit"
+  }
+]

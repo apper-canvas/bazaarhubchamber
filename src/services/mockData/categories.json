@@ -1,0 +1,38 @@
+[
+  {
+    "Id": 1,
+    "name": "Electronics",
+    "subcategories": ["Audio", "Wearables", "Cameras", "Computers", "Accessories", "Television"],
+    "productCount": 148
+  },
+  {
+    "Id": 2,
+    "name": "Fashion",
+    "subcategories": ["Footwear", "Bags", "Clothing", "Accessories", "Watches"],
+    "productCount": 267
+  },
+  {
+    "Id": 3,
+    "name": "Home",
+    "subcategories": ["Kitchen", "Appliances", "Furniture", "Lighting", "Health"],
+    "productCount": 189
+  },
+  {
+    "Id": 4,
+    "name": "Sports",
+    "subcategories": ["Fitness", "Outdoor", "Equipment", "Apparel"],
+    "productCount": 134
+  },
+  {
+    "Id": 5,
+    "name": "Books",
+    "subcategories": ["Fiction", "Non-Fiction", "Educational", "Comics"],
+    "productCount": 456
+  },
+  {
+    "Id": 6,
+    "name": "Toys",
+    "subcategories": ["Action Figures", "Board Games", "Educational", "Outdoor"],
+    "productCount": 89
+  }
+]

@@ -78,10 +78,9 @@ const [filters, setFilters] = useState({
     }
 };
 
-  const handleAddToCart = (product) => {
-    if (outletContext?.onAddToCart && typeof outletContext.onAddToCart === 'function') {
-      outletContext.onAddToCart(product);
-      toast.success(`${product.title} added to cart!`);
+const handleAddToCart = (product) => {
+    if (outletContext?.cartState?.handleAddToCart && typeof outletContext.cartState.handleAddToCart === 'function') {
+      outletContext.cartState.handleAddToCart(product);
     }
   };
 

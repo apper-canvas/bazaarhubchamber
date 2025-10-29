@@ -1,8 +1,7 @@
 import 'react-toastify/dist/ReactToastify.css';
 import React, { useEffect, useState } from "react";
-import { RouterProvider } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { router } from "./router";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -64,9 +63,9 @@ function App() {
     handleClearCart
   };
 
-  return (
+return (
     <>
-      <RouterProvider router={router} context={{ cartState }} />
+      <Outlet context={{ cartState }} />
       <ToastContainer
         position="top-right"
         autoClose={3000}

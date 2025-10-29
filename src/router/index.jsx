@@ -1,14 +1,14 @@
 import React, { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
+import App from "@/App";
 import Layout from "@/components/organisms/Layout";
 
-const Home = lazy(() => import('@/components/pages/Home'));
+const Home = lazy(() => import("@/components/pages/Home"));
 const ProductDetailPage = lazy(() => import('@/components/pages/ProductDetailPage'));
 const Cart = lazy(() => import('@/components/pages/Cart'));
 const Checkout = lazy(() => import('@/components/pages/Checkout'));
 const OrderConfirmation = lazy(() => import('@/components/pages/OrderConfirmation'));
 const NotFound = lazy(() => import('@/components/pages/NotFound'));
-
 const loadingFallback = (
   <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
     <div className="text-center space-y-4">
@@ -32,8 +32,14 @@ const mainRoutes = [
 const routes = [
   {
     path: "/",
-    element: <Layout />,
-    children: mainRoutes
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Layout />,
+        children: mainRoutes
+      }
+    ]
   }
 ];
 

@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate, useOutletContext } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import productService from "@/services/api/productService";
 import ProductDetail from "@/components/organisms/ProductDetail";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
-import { toast } from "react-toastify";
 
 const ProductDetailPage = () => {
   const context = useOutletContext() || {};
@@ -30,16 +30,17 @@ const ProductDetailPage = () => {
       setLoading(false);
     }
   };
-
 const handleAddToCart = (productData) => {
-    if (typeof addToCart !== 'function') {
-      toast.error('Unable to add to cart. Please refresh the page.');
-      return;
-    }
-    if (!productData) {
+    if (!productData || !productData.id) {
       toast.error('Invalid product data');
       return;
     }
+    
+    if (!addToCart || typeof addToCart !== 'function') {
+      toast.error('Cart functionality not available');
+      return;
+    }
+    
     addToCart(productData);
     toast.success(`${productData?.title || 'Product'} added to cart!`);
   };

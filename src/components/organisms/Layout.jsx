@@ -4,7 +4,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import CartSidebar from "@/components/organisms/CartSidebar";
 import Header from "@/components/organisms/Header";
 
-function Layout({ cartState }) {
+function Layout() {
+  const { cartState } = useOutletContext();
   const {
     cartItems = [],
     showCartSidebar = false,
@@ -32,7 +33,7 @@ function Layout({ cartState }) {
         }} />
       </main>
 
-      <AnimatePresence>
+<AnimatePresence>
         {showCartSidebar && (
           <>
             <motion.div
@@ -43,10 +44,12 @@ function Layout({ cartState }) {
               className="fixed inset-0 bg-black/50 z-40"
             />
             <CartSidebar
+              isOpen={showCartSidebar}
+              onClose={() => setShowCartSidebar(false)}
               cartItems={cartItems}
               onUpdateQuantity={handleUpdateQuantity}
               onRemoveItem={handleRemoveItem}
-              onClose={() => setShowCartSidebar(false)}
+              onClearCart={handleClearCart}
             />
           </>
         )}

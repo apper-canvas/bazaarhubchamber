@@ -1,12 +1,14 @@
-import { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ApperIcon from "@/components/ApperIcon";
-import Input from "@/components/atoms/Input";
-import Button from "@/components/atoms/Button";
 import { toast } from "react-toastify";
-
-const Checkout = ({ cartItems = [], onClearCart }) => {
+import ApperIcon from "@/components/ApperIcon";
+import Button from "@/components/atoms/Button";
+import Input from "@/components/atoms/Input";
+import Cart from "@/components/pages/Cart";
+import { CartContext } from "@/components/organisms/Layout";
+const Checkout = () => {
   const navigate = useNavigate();
+  const { cartItems, handleClearCart } = useContext(CartContext);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     fullName: "",
@@ -46,10 +48,10 @@ const calculateTotal = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+const handleSubmit = (e) => {
     e.preventDefault();
     const orderId = "ORD" + Date.now();
-    onClearCart();
+    handleClearCart();
     toast.success("Order placed successfully!");
     navigate("/order-confirmation", { 
       state: { 

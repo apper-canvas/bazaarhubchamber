@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
-import Checkout from "@/components/pages/Checkout";
 import { CartContext } from "@/components/organisms/Layout";
 import Empty from "@/components/ui/Empty";
 

@@ -1,63 +1,52 @@
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
-import Header from "@/components/organisms/Header";
-import CartSidebar from "@/components/organisms/CartSidebar";
 import { ToastContainer, toast } from "react-toastify";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import CartSidebar from "@/components/organisms/CartSidebar";
+import Header from "@/components/organisms/Header";
 
 function Layout() {
-  const [cartItems, setCartItems] = useState(() => {
-    const saved = localStorage.getItem("cartItems");
-    return saved ? JSON.parse(saved) : [];
-  });
+  const [cartItems, setCartItems] = useState([]);
   const [showCartSidebar, setShowCartSidebar] = useState(false);
 
-  useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  }, [cartItems]);
-
   const handleAddToCart = (product) => {
-    setCartItems((prev) => {
-      const existing = prev.find((item) => item.Id === product.Id);
-      if (existing) {
-        toast.success(`Updated ${product.name} quantity in cart!`);
-        return prev.map((item) =>
-          item.Id === product.Id
+    setCartItems(prevItems => {
+      const existingItem = prevItems.find(item => item.id === product.id);
+      if (existingItem) {
+        return prevItems.map(item =>
+          item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       }
-      toast.success(`${product.name} added to cart!`);
-      return [...prev, { ...product, quantity: 1 }];
+      return [...prevItems, { ...product, quantity: 1 }];
     });
+    toast.success(`${product.name} added to cart`);
   };
 
   const handleUpdateQuantity = (productId, newQuantity) => {
-    if (newQuantity <= 0) {
+    if (newQuantity < 1) {
       handleRemoveItem(productId);
       return;
     }
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.Id === productId ? { ...item, quantity: newQuantity } : item
+    setCartItems(prevItems =>
+      prevItems.map(item =>
+        item.id === productId
+          ? { ...item, quantity: newQuantity }
+          : item
       )
     );
   };
 
   const handleRemoveItem = (productId) => {
-    const item = cartItems.find((item) => item.Id === productId);
-    if (item) {
-      toast.info(`${item.name} removed from cart`);
-    }
-    setCartItems((prev) => prev.filter((item) => item.Id !== productId));
+    setCartItems(prevItems => prevItems.filter(item => item.id !== productId));
+    toast.info('Item removed from cart');
   };
 
   const handleClearCart = () => {
     setCartItems([]);
-    localStorage.removeItem("cartItems");
-    toast.success("Order placed successfully!");
+    toast.info('Cart cleared');
   };
-
   return (
     <div className="min-h-screen bg-gray-50">
       <Header
@@ -65,7 +54,7 @@ function Layout() {
         onMenuClick={() => setShowCartSidebar(true)}
       />
 
-      <Outlet context={{ 
+<Outlet context={{ 
         cartItems, 
         onAddToCart: handleAddToCart,
         onUpdateQuantity: handleUpdateQuantity,

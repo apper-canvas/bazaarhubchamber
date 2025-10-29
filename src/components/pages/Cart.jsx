@@ -1,13 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import React from "react";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
-import { motion } from "framer-motion";
+import Checkout from "@/components/pages/Checkout";
 import Empty from "@/components/ui/Empty";
 
-const Cart = ({ cartItems = [], onUpdateQuantity, onRemoveItem }) => {
+const Cart = () => {
+  const { cartItems = [], onUpdateQuantity, onRemoveItem } = useOutletContext();
   const navigate = useNavigate();
-
-  // Validate cartItems prop
   const safeCartItems = cartItems || [];
 
   const calculateSubtotal = () => {

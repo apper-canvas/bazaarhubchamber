@@ -1,14 +1,11 @@
+import 'react-toastify/dist/ReactToastify.css';
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { AnimatePresence } from "framer-motion";
-import Layout from "@/components/organisms/Layout";
+import { router } from "./router";
+
 function App() {
-// Cart state management with localStorage persistence
-  const [cartItems, setCartItems] = useState(() => {
-    const saved = localStorage.getItem('cartItems');
-    return saved ? JSON.parse(saved) : [];
-  });
+  const [cartItems, setCartItems] = useState([]);
   const [showCartSidebar, setShowCartSidebar] = useState(false);
 
   useEffect(() => {
@@ -67,7 +64,23 @@ function App() {
     handleClearCart
   };
 
-  return <Layout cartState={cartState} />;
+  return (
+    <>
+      <RouterProvider router={router} context={{ cartState }} />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+    </>
+  );
 }
 
 export default App;

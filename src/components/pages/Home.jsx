@@ -1,17 +1,17 @@
-import { useState, useEffect } from "react";
-import { useSearchParams, useOutletContext } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useOutletContext, useSearchParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import { AnimatePresence, motion } from "framer-motion";
 import productService from "@/services/api/productService";
+import ApperIcon from "@/components/ApperIcon";
 import ProductCard from "@/components/organisms/ProductCard";
 import FilterSidebar from "@/components/organisms/FilterSidebar";
 import Loading from "@/components/ui/Loading";
-import Error from "@/components/ui/Error";
 import Empty from "@/components/ui/Empty";
-import ApperIcon from "@/components/ApperIcon";
-import { toast } from "react-toastify";
-import { motion, AnimatePresence } from "framer-motion";
+import Error from "@/components/ui/Error";
 
 const Home = () => {
-  const { onAddToCart } = useOutletContext();
+  const outletContext = useOutletContext();
   const [searchParams] = useSearchParams();
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -76,11 +76,13 @@ const [filters, setFilters] = useState({
     } catch (err) {
       console.error("Filter error:", err);
     }
-  };
+};
 
   const handleAddToCart = (product) => {
-    onAddToCart(product);
-    toast.success(`${product.title} added to cart!`);
+    if (outletContext?.onAddToCart && typeof outletContext.onAddToCart === 'function') {
+      outletContext.onAddToCart(product);
+      toast.success(`${product.title} added to cart!`);
+    }
   };
 
   if (loading) {

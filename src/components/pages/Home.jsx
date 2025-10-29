@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useOutletContext } from "react-router-dom";
 import productService from "@/services/api/productService";
 import ProductCard from "@/components/organisms/ProductCard";
 import FilterSidebar from "@/components/organisms/FilterSidebar";
@@ -10,7 +10,8 @@ import ApperIcon from "@/components/ApperIcon";
 import { toast } from "react-toastify";
 import { motion, AnimatePresence } from "framer-motion";
 
-const Home = ({ onAddToCart }) => {
+const Home = () => {
+  const { onAddToCart } = useOutletContext();
   const [searchParams] = useSearchParams();
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);

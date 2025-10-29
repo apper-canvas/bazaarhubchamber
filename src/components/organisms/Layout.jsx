@@ -13,20 +13,19 @@ function Layout() {
 
 const handleAddToCart = (product) => {
     setCartItems((prevItems) => {
-      const existingItem = prevItems.find((item) => item.id === product.id);
+      const existingItem = prevItems.find((item) => item.Id === product.Id);
       
       if (existingItem) {
-        toast.success(`Updated ${product.name} quantity in cart`, {
+        toast.success(`Updated ${product.title} quantity in cart`, {
           icon: "🛒",
-icon: "🛒",
         });
         return prevItems.map((item) =>
-          item.id === product.id
+          item.Id === product.Id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       } else {
-        toast.success(`Added ${product.name} to cart`, {
+        toast.success(`Added ${product.title} to cart`, {
           icon: "🛒",
         });
         return [...prevItems, { ...product, quantity: 1 }];
@@ -40,16 +39,18 @@ icon: "🛒",
       return;
     }
 
-setCartItems((prevItems) =>
+    setCartItems((prevItems) =>
       prevItems.map((item) =>
-        item.id === productId ? { ...item, quantity: newQuantity } : item
+        item.Id === productId ? { ...item, quantity: newQuantity } : item
       )
     );
   };
-const handleRemoveItem = (productId) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== productId));
+
+  const handleRemoveItem = (productId) => {
+    setCartItems((prevItems) => prevItems.filter((item) => item.Id !== productId));
     toast.info("Item removed from cart");
   };
+
   const handleClearCart = () => {
     setCartItems([]);
   };

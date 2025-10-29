@@ -18,9 +18,11 @@
       "Noise Cancellation": "Active",
       "Weight": "250g"
     },
-    "brand": "AudioPro"
+    "brand": "AudioPro",
+    "color": "Black",
+    "size": "Standard"
   },
-  {
+{
     "Id": 2,
     "title": "Smart Watch Series 7",
     "description": "Advanced smartwatch with fitness tracking, heart rate monitor, GPS, and water resistance. Stay connected and healthy.",
@@ -39,9 +41,11 @@
       "Water Resistance": "5 ATM",
       "Sensors": "Heart Rate, SpO2, GPS"
     },
-    "brand": "TechTime"
+    "brand": "TechTime",
+    "color": "Silver",
+    "size": "Standard"
   },
-  {
+{
     "Id": 3,
     "title": "Professional Camera Kit",
     "description": "Complete DSLR camera kit with 18-55mm and 55-200mm lenses, camera bag, and accessories. Perfect for photography enthusiasts.",
@@ -60,9 +64,11 @@
       "Video": "4K at 30fps",
       "Screen": "3.2 inch touchscreen"
     },
-    "brand": "PhotoMaster"
+    "brand": "PhotoMaster",
+    "color": "Black",
+    "size": "Standard"
   },
-  {
+{
     "Id": 4,
     "title": "Gaming Laptop Pro",
     "description": "High-performance gaming laptop with RTX 4060 graphics, 16GB RAM, 512GB SSD, and 144Hz display. Dominate every game.",
@@ -82,9 +88,11 @@
       "Storage": "512GB NVMe SSD",
       "Display": "15.6 inch 144Hz"
     },
-    "brand": "GameForce"
+    "brand": "GameForce",
+    "color": "Gray",
+    "size": "Standard"
   },
-  {
+{
     "Id": 5,
     "title": "Wireless Mechanical Keyboard",
     "description": "Premium mechanical keyboard with RGB lighting, hot-swappable switches, and wireless connectivity. Perfect for gamers and typists.",
@@ -103,9 +111,11 @@
       "Battery Life": "40 hours",
       "Lighting": "RGB per-key"
     },
-    "brand": "KeyMaster"
+    "brand": "KeyMaster",
+    "color": "Black",
+    "size": "Standard"
   },
-  {
+{
     "Id": 6,
     "title": "4K Ultra HD Smart TV 55 inch",
     "description": "Stunning 4K smart TV with HDR support, built-in streaming apps, and voice control. Transform your entertainment experience.",
@@ -124,9 +134,11 @@
       "HDR": "HDR10+",
       "Smart Features": "Android TV"
     },
-    "brand": "VisionTech"
+    "brand": "VisionTech",
+    "color": "Black",
+    "size": "Standard"
   },
-  {
+{
     "Id": 7,
     "title": "Running Shoes Pro Series",
     "description": "Lightweight running shoes with advanced cushioning, breathable mesh, and superior grip. Perfect for marathon runners.",
@@ -145,9 +157,11 @@
       "Weight": "220g",
       "Available Sizes": "6-12"
     },
-    "brand": "RunFast"
+    "brand": "RunFast",
+    "color": "Blue",
+    "size": "9"
   },
-  {
+{
     "Id": 8,
     "title": "Designer Leather Backpack",
     "description": "Premium leather backpack with laptop compartment, multiple pockets, and water-resistant coating. Style meets functionality.",
@@ -166,9 +180,11 @@
       "Laptop Size": "Up to 15.6 inch",
       "Features": "Water-resistant"
     },
-    "brand": "UrbanStyle"
+    "brand": "UrbanStyle",
+    "color": "Brown",
+    "size": "Standard"
   },
-  {
+{
     "Id": 9,
     "title": "Coffee Maker with Grinder",
     "description": "Premium coffee maker with built-in grinder, programmable settings, and thermal carafe. Wake up to fresh coffee every morning.",
@@ -187,9 +203,11 @@
       "Features": "Programmable, Auto-shutoff",
       "Carafe": "Thermal stainless steel"
     },
-    "brand": "BrewMaster"
+    "brand": "BrewMaster",
+    "color": "Silver",
+    "size": "Standard"
   },
-  {
+{
     "Id": 10,
     "title": "Air Purifier with HEPA Filter",
     "description": "Advanced air purifier with true HEPA filter, removes 99.97% of airborne particles. Breathe cleaner air at home.",
@@ -208,9 +226,11 @@
       "CADR": "300 m³/h",
       "Noise Level": "25-55 dB"
     },
-    "brand": "PureAir"
+    "brand": "PureAir",
+    "color": "White",
+    "size": "Standard"
   },
-  {
+{
     "Id": 11,
     "title": "Yoga Mat Premium",
     "description": "Extra thick yoga mat with non-slip surface, eco-friendly materials, and carrying strap. Perfect for all yoga practices.",
@@ -229,9 +249,11 @@
       "Size": "183 x 61 cm",
       "Features": "Non-slip, Odor-free"
     },
-    "brand": "ZenFit"
+    "brand": "ZenFit",
+    "color": "Purple",
+    "size": "Standard"
   },
-  {
+{
     "Id": 12,
     "title": "Adjustable Dumbbell Set",
     "description": "Space-saving adjustable dumbbells with quick-change weight system. Complete home gym solution.",
@@ -250,9 +272,11 @@
       "Adjustments": "Quick-lock system",
       "Space-saving": "Compact design"
     },
-    "brand": "PowerFit"
+    "brand": "PowerFit",
+    "color": "Black",
+    "size": "Standard"
   },
-  {
+{
     "Id": 13,
     "title": "Bluetooth Speaker Waterproof",
     "description": "Portable waterproof Bluetooth speaker with 20-hour battery, powerful bass, and rugged design. Perfect for outdoor adventures.",
@@ -271,9 +295,11 @@
       "Connectivity": "Bluetooth 5.0",
       "Output": "20W"
     },
-    "brand": "SoundWave"
+    "brand": "SoundWave",
+    "color": "Red",
+    "size": "Standard"
   },
-  {
+{
     "Id": 14,
     "title": "Office Chair Ergonomic",
     "description": "Premium ergonomic office chair with lumbar support, adjustable armrests, and breathable mesh back. All-day comfort.",
@@ -292,9 +318,11 @@
       "Adjustments": "Height, armrests, tilt",
       "Warranty": "2 years"
     },
-    "brand": "ComfortPro"
+    "brand": "ComfortPro",
+    "color": "Gray",
+    "size": "Standard"
   },
-  {
+{
     "Id": 15,
     "title": "Instant Pot Multi-Cooker",
     "description": "7-in-1 programmable multi-cooker with pressure cooking, slow cooking, rice cooker, and more. One pot, endless possibilities.",
@@ -313,9 +341,11 @@
       "Material": "Stainless steel",
       "Safety": "10 safety features"
     },
-    "brand": "QuickChef"
+    "brand": "QuickChef",
+    "color": "Silver",
+    "size": "Standard"
   },
-  {
+{
     "Id": 16,
     "title": "LED Desk Lamp Smart",
     "description": "Smart LED desk lamp with adjustable brightness, color temperature, USB charging port, and touch controls.",
@@ -334,9 +364,11 @@
       "Features": "USB charging, Touch control",
       "Power": "12W LED"
     },
-    "brand": "LightTech"
+    "brand": "LightTech",
+    "color": "White",
+    "size": "Standard"
   },
-  {
+{
     "Id": 17,
     "title": "Wireless Mouse Ergonomic",
     "description": "Ergonomic wireless mouse with silent clicks, adjustable DPI, and long battery life. Comfortable for all-day use.",
@@ -355,9 +387,11 @@
       "Battery Life": "12 months",
       "Silent Clicks": "Yes"
     },
-    "brand": "ClickMaster"
+    "brand": "ClickMaster",
+    "color": "Gray",
+    "size": "Standard"
   },
-  {
+{
     "Id": 18,
     "title": "Power Bank 20000mAh",
     "description": "High-capacity power bank with fast charging, dual USB ports, and LED display. Never run out of battery.",
@@ -376,9 +410,11 @@
       "Input": "Type-C & Micro USB",
       "Display": "LED battery indicator"
     },
-    "brand": "ChargeMax"
+    "brand": "ChargeMax",
+    "color": "Black",
+    "size": "Standard"
   },
-  {
+{
     "Id": 19,
     "title": "Digital Bathroom Scale",
     "description": "Smart bathroom scale with body composition analysis, app connectivity, and precise measurements. Track your fitness journey.",
@@ -397,9 +433,11 @@
       "Features": "Body composition, App sync",
       "Display": "LED"
     },
-    "brand": "HealthTrack"
+    "brand": "HealthTrack",
+    "color": "White",
+    "size": "Standard"
   },
-  {
+{
     "Id": 20,
     "title": "Resistance Bands Set",
     "description": "Complete resistance bands set with 5 levels, handles, door anchor, and carry bag. Full-body workout anywhere.",
@@ -418,6 +456,8 @@
       "Includes": "Handles, door anchor, bag",
       "Weight Range": "10-30 lbs equivalent"
     },
-    "brand": "FlexFit"
+    "brand": "FlexFit",
+    "color": "Green",
+    "size": "Standard"
   }
 ]

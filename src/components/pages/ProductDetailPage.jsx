@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useOutletContext, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import productService from "@/services/api/productService";
 import ProductDetail from "@/components/organisms/ProductDetail";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
+import { toast } from "react-toastify";
 
-const ProductDetailPage = () => {
-  const context = useOutletContext() || {};
-  const { addToCart } = context;
+const ProductDetailPage = ({ onAddToCart }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
   useEffect(() => {
     loadProduct();
   }, [id]);
@@ -30,19 +29,10 @@ const ProductDetailPage = () => {
       setLoading(false);
     }
   };
-const handleAddToCart = (productData) => {
-    if (!productData || !productData.id) {
-      toast.error('Invalid product data');
-      return;
-    }
-    
-    if (!addToCart || typeof addToCart !== 'function') {
-      toast.error('Cart functionality not available');
-      return;
-    }
-    
-    addToCart(productData);
-    toast.success(`${productData?.title || 'Product'} added to cart!`);
+
+  const handleAddToCart = (productData) => {
+    onAddToCart(productData);
+    toast.success(`${productData.title} added to cart!`);
   };
 
   const handleClose = () => {

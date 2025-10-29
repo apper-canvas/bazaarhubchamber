@@ -1,84 +1,125 @@
-import 'react-toastify/dist/ReactToastify.css';
-import React, { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { AnimatePresence } from "framer-motion";
+import Header from "@/components/organisms/Header";
+import CartSidebar from "@/components/organisms/CartSidebar";
+import Home from "@/components/pages/Home";
+import ProductDetailPage from "@/components/pages/ProductDetailPage";
+import Cart from "@/components/pages/Cart";
+import Checkout from "@/components/pages/Checkout";
+import OrderConfirmation from "@/components/pages/OrderConfirmation";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [showCartSidebar, setShowCartSidebar] = useState(false);
 
+  // Load cart from localStorage on mount
   useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    const savedCart = localStorage.getItem("bazaarhub_cart");
+    if (savedCart) {
+      setCartItems(JSON.parse(savedCart));
+    }
+  }, []);
+
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("bazaarhub_cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
   const handleAddToCart = (product) => {
-    setCartItems((prev) => {
-      const existing = prev.find((item) => item.Id === product.Id);
-      if (existing) {
-        toast.success(`Updated ${product.name} quantity in cart!`);
-        return prev.map((item) =>
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find((item) => item.Id === product.Id);
+      if (existingItem) {
+        return prevItems.map((item) =>
           item.Id === product.Id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + (product.quantity || 1) }
             : item
         );
       }
-      toast.success(`${product.name} added to cart!`);
-      return [...prev, { ...product, quantity: 1 }];
+      return [...prevItems, { ...product, quantity: product.quantity || 1 }];
     });
   };
 
   const handleUpdateQuantity = (productId, newQuantity) => {
-    if (newQuantity <= 0) {
-      handleRemoveItem(productId);
-      return;
-    }
-    setCartItems((prev) =>
-      prev.map((item) =>
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
         item.Id === productId ? { ...item, quantity: newQuantity } : item
       )
     );
   };
 
   const handleRemoveItem = (productId) => {
-    const item = cartItems.find((item) => item.Id === productId);
-    if (item) {
-      toast.info(`${item.name} removed from cart`);
-    }
-    setCartItems((prev) => prev.filter((item) => item.Id !== productId));
+    setCartItems((prevItems) => prevItems.filter((item) => item.Id !== productId));
   };
 
   const handleClearCart = () => {
     setCartItems([]);
-    localStorage.removeItem('cartItems');
-    toast.success('Order placed successfully!');
   };
 
-  const cartState = {
-    cartItems,
-    showCartSidebar,
-    setShowCartSidebar,
-    handleAddToCart,
-    handleUpdateQuantity,
-    handleRemoveItem,
-    handleClearCart
-  };
+  return (
+    <BrowserRouter>
+      <div className="min-h-screen bg-gray-50">
+        <Header
+          cartItemCount={cartItems.reduce((total, item) => total + item.quantity, 0)}
+          onMenuClick={() => setShowCartSidebar(true)}
+        />
 
-return (
-    <>
-      <Outlet context={{ cartState }} />
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-    </>
+        <Routes>
+          <Route path="/" element={<Home onAddToCart={handleAddToCart} />} />
+          <Route
+            path="/product/:id"
+            element={<ProductDetailPage onAddToCart={handleAddToCart} />}
+          />
+          <Route
+            path="/cart"
+            element={
+              <Cart
+                cartItems={cartItems}
+                onUpdateQuantity={handleUpdateQuantity}
+                onRemoveItem={handleRemoveItem}
+              />
+            }
+          />
+          <Route
+            path="/checkout"
+            element={
+              <Checkout cartItems={cartItems} onClearCart={handleClearCart} />
+            }
+          />
+          <Route path="/order-confirmation" element={<OrderConfirmation />} />
+        </Routes>
+
+        <AnimatePresence>
+          {showCartSidebar && (
+            <>
+              <div
+                className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+                onClick={() => setShowCartSidebar(false)}
+              />
+              <CartSidebar
+                cartItems={cartItems}
+                onUpdateQuantity={handleUpdateQuantity}
+                onRemoveItem={handleRemoveItem}
+                onClose={() => setShowCartSidebar(false)}
+              />
+            </>
+          )}
+        </AnimatePresence>
+
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </div>
+    </BrowserRouter>
   );
 }
 

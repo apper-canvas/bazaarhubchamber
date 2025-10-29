@@ -33,7 +33,7 @@ const productService = {
     );
   },
 
-async filterProducts(filters) {
+  async filterProducts(filters) {
     await delay(300);
     let filtered = [...productsData];
 
@@ -43,18 +43,6 @@ async filterProducts(filters) {
 
     if (filters.subcategory) {
       filtered = filtered.filter((p) => p.subcategory === filters.subcategory);
-    }
-
-    if (filters.brands && filters.brands.length > 0) {
-      filtered = filtered.filter((p) => filters.brands.includes(p.brand));
-    }
-
-    if (filters.colors && filters.colors.length > 0) {
-      filtered = filtered.filter((p) => filters.colors.includes(p.color));
-    }
-
-    if (filters.sizes && filters.sizes.length > 0) {
-      filtered = filtered.filter((p) => filters.sizes.includes(p.size));
     }
 
     if (filters.minPrice !== undefined) {

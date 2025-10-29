@@ -1,32 +1,25 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { useNavigate, useOutletContext } from "react-router-dom";
-import React from "react";
+import { useNavigate } from "react-router-dom";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
-import Checkout from "@/components/pages/Checkout";
+import { motion } from "framer-motion";
 import Empty from "@/components/ui/Empty";
 
-const Cart = () => {
-  const { cartItems = [], onUpdateQuantity, onRemoveItem } = useOutletContext();
+const Cart = ({ cartItems, onUpdateQuantity, onRemoveItem }) => {
   const navigate = useNavigate();
-  const safeCartItems = cartItems || [];
 
   const calculateSubtotal = () => {
-    return safeCartItems.reduce((total, item) => {
-      return total + ((item?.price || 0) * (item?.quantity || 0));
-    }, 0);
+    return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   };
 
-const calculateTax = () => {
-    const subtotal = calculateSubtotal();
-    return Math.round((subtotal || 0) * 0.18);
+  const calculateTax = () => {
+    return Math.round(calculateSubtotal() * 0.18);
   };
 
   const calculateTotal = () => {
-    return (calculateSubtotal() || 0) + (calculateTax() || 0);
+    return calculateSubtotal() + calculateTax();
   };
 
-if (safeCartItems.length === 0) {
+  if (cartItems.length === 0) {
     return (
       <div className="container mx-auto px-4 py-16">
         <Empty
@@ -45,10 +38,10 @@ if (safeCartItems.length === 0) {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Cart Items */}
-<div className="lg:col-span-2 space-y-4">
-          {safeCartItems.map((item) => (
+        <div className="lg:col-span-2 space-y-4">
+          {cartItems.map((item) => (
             <motion.div
-              key={item?.Id || Math.random()}
+              key={item.Id}
               layout
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -57,42 +50,42 @@ if (safeCartItems.length === 0) {
             >
               <div className="flex gap-6">
                 <img
-                  src={item?.images?.[0] || '/placeholder.png'}
-                  alt={item?.title || 'Product'}
+                  src={item.images[0]}
+                  alt={item.title}
                   className="w-32 h-32 object-cover rounded-lg"
                 />
                 <div className="flex-1">
-<div className="flex items-start justify-between mb-2">
+                  <div className="flex items-start justify-between mb-2">
                     <div>
-                      <p className="text-sm text-gray-500 mb-1">{item?.brand || 'Unknown Brand'}</p>
+                      <p className="text-sm text-gray-500 mb-1">{item.brand}</p>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                        {item?.title || 'Product'}
+                        {item.title}
                       </h3>
                     </div>
                     <button
-                      onClick={() => onRemoveItem?.(item?.Id)}
+                      onClick={() => onRemoveItem(item.Id)}
                       className="p-2 text-danger hover:bg-danger/10 rounded-lg transition-colors"
                     >
                       <ApperIcon name="Trash2" size={20} />
                     </button>
                   </div>
                   <p className="text-2xl font-bold text-primary mb-4">
-                    ₹{(item?.price || 0).toLocaleString()}
+                    ₹{item.price.toLocaleString()}
                   </p>
                   <div className="flex items-center gap-4">
                     <span className="text-sm font-medium text-gray-700">Quantity:</span>
                     <div className="flex items-center gap-2">
-<button
-                        onClick={() => onUpdateQuantity?.(item?.Id, Math.max(1, (item?.quantity || 1) - 1))}
+                      <button
+                        onClick={() => onUpdateQuantity(item.Id, Math.max(1, item.quantity - 1))}
                         className="w-10 h-10 flex items-center justify-center bg-gray-100 border border-gray-200 rounded-lg hover:bg-gray-200 transition-colors"
                       >
                         <ApperIcon name="Minus" size={18} />
                       </button>
                       <span className="text-lg font-semibold w-12 text-center">
-                        {item?.quantity || 0}
+                        {item.quantity}
                       </span>
                       <button
-                        onClick={() => onUpdateQuantity?.(item?.Id, (item?.quantity || 0) + 1)}
+                        onClick={() => onUpdateQuantity(item.Id, item.quantity + 1)}
                         className="w-10 h-10 flex items-center justify-center bg-gray-100 border border-gray-200 rounded-lg hover:bg-gray-200 transition-colors"
                       >
                         <ApperIcon name="Plus" size={18} />
@@ -101,7 +94,7 @@ if (safeCartItems.length === 0) {
                     <div className="ml-auto text-right">
                       <p className="text-sm text-gray-600 mb-1">Subtotal</p>
                       <p className="text-xl font-bold text-gray-900">
-                        ₹{((item?.price || 0) * (item?.quantity || 0)).toLocaleString()}
+                        ₹{(item.price * item.quantity).toLocaleString()}
                       </p>
                     </div>
                   </div>

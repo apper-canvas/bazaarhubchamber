@@ -42,19 +42,19 @@ const ProductDetail = ({ product, onAddToCart, onClose }) => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6">
           {/* Image Gallery */}
-<div className="space-y-4">
+          <div className="space-y-4">
             <div className="aspect-square bg-gray-100 rounded-xl overflow-hidden">
               <motion.img
                 key={selectedImage}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                src={product?.images?.[selectedImage] || '/placeholder.jpg'}
-                alt={product?.title || 'Product'}
+                src={product.images[selectedImage]}
+                alt={product.title}
                 className="w-full h-full object-cover"
               />
             </div>
-<div className="grid grid-cols-4 gap-4">
-              {(product?.images || []).map((image, index) => (
+            <div className="grid grid-cols-4 gap-4">
+              {product.images.map((image, index) => (
                 <button
                   key={index}
                   onClick={() => setSelectedImage(index)}
@@ -66,7 +66,7 @@ const ProductDetail = ({ product, onAddToCart, onClose }) => {
                 >
                   <img
                     src={image}
-                    alt={`${product?.title || 'Product'} ${index + 1}`}
+                    alt={`${product.title} ${index + 1}`}
                     className="w-full h-full object-cover"
                   />
                 </button>
@@ -75,41 +75,42 @@ const ProductDetail = ({ product, onAddToCart, onClose }) => {
           </div>
 
           {/* Product Info */}
-<div className="space-y-6">
+          <div className="space-y-6">
             <div>
-              <p className="text-sm text-gray-500 mb-2">{product?.brand || 'Unknown Brand'}</p>
+              <p className="text-sm text-gray-500 mb-2">{product.brand}</p>
               <h1 className="text-3xl font-bold text-gray-900 mb-4">
-                {product?.title || 'Product'}
+                {product.title}
               </h1>
-              <RatingStars rating={product?.rating || 0} reviewCount={product?.reviewCount || 0} size={20} />
+              <RatingStars rating={product.rating} reviewCount={product.reviewCount} size={20} />
             </div>
 
-<PriceDisplay
-              price={product?.price || 0}
-              originalPrice={product?.originalPrice}
+            <PriceDisplay
+              price={product.price}
+              originalPrice={product.originalPrice}
               className="py-4 border-y border-gray-200"
             />
-<div>
-              <Badge variant={product?.inStock ? "success" : "danger"}>
-                {product?.inStock ? "In Stock" : "Out of Stock"}
+
+            <div>
+              <Badge variant={product.inStock ? "success" : "danger"}>
+                {product.inStock ? "In Stock" : "Out of Stock"}
               </Badge>
             </div>
 
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Description</h3>
-              <p className="text-gray-700 leading-relaxed">{product?.description || 'No description available'}</p>
+              <p className="text-gray-700 leading-relaxed">{product.description}</p>
             </div>
 
-<div>
+            <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Specifications</h3>
               <div className="space-y-2">
-                {Object.entries(product?.specifications || {}).map(([key, value]) => (
+                {Object.entries(product.specifications).map(([key, value]) => (
                   <div
                     key={key}
                     className="flex items-start justify-between py-2 border-b border-gray-100"
                   >
                     <span className="text-sm font-medium text-gray-600">{key}:</span>
-                    <span className="text-sm text-gray-900 text-right">{value || 'N/A'}</span>
+                    <span className="text-sm text-gray-900 text-right">{value}</span>
                   </div>
                 ))}
               </div>
@@ -137,14 +138,14 @@ const ProductDetail = ({ product, onAddToCart, onClose }) => {
                 </div>
               </div>
 
-<Button
+              <Button
                 onClick={handleAddToCart}
-                disabled={!product?.inStock}
+                disabled={!product.inStock}
                 className="w-full"
                 size="lg"
               >
                 <ApperIcon name="ShoppingCart" size={20} />
-                {product?.inStock ? "Add to Cart" : "Out of Stock"}
+                {product.inStock ? "Add to Cart" : "Out of Stock"}
               </Button>
             </div>
           </div>

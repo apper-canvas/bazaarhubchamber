@@ -1,16 +1,17 @@
-import { useState, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import productService from "@/services/api/productService";
+import ApperIcon from "@/components/ApperIcon";
 import ProductCard from "@/components/organisms/ProductCard";
 import FilterSidebar from "@/components/organisms/FilterSidebar";
+import { CartContext } from "@/components/organisms/Layout";
 import Loading from "@/components/ui/Loading";
-import Error from "@/components/ui/Error";
 import Empty from "@/components/ui/Empty";
-import ApperIcon from "@/components/ApperIcon";
-import { toast } from "react-toastify";
-import { motion, AnimatePresence } from "framer-motion";
+import Error from "@/components/ui/Error";
 
-const Home = ({ onAddToCart }) => {
+const Home = () => {
+  const { addToCart } = useContext(CartContext);
   const [searchParams] = useSearchParams();
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -74,9 +75,8 @@ const Home = ({ onAddToCart }) => {
     }
   };
 
-  const handleAddToCart = (product) => {
-    onAddToCart(product);
-    toast.success(`${product.title} added to cart!`);
+const handleAddToCart = (product) => {
+    addToCart(product);
   };
 
   if (loading) {

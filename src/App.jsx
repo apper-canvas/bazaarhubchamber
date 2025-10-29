@@ -1,14 +1,7 @@
-import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { AnimatePresence } from "framer-motion";
-import Header from "@/components/organisms/Header";
-import CartSidebar from "@/components/organisms/CartSidebar";
-import Home from "@/components/pages/Home";
-import ProductDetailPage from "@/components/pages/ProductDetailPage";
-import Cart from "@/components/pages/Cart";
-import Checkout from "@/components/pages/Checkout";
-import OrderConfirmation from "@/components/pages/OrderConfirmation";
+import { router } from "@/router";
+import React, { useEffect, useState } from "react";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -58,68 +51,21 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <div className="min-h-screen bg-gray-50">
-        <Header
-          cartItemCount={cartItems.reduce((total, item) => total + item.quantity, 0)}
-          onMenuClick={() => setShowCartSidebar(true)}
-        />
-
-        <Routes>
-          <Route path="/" element={<Home onAddToCart={handleAddToCart} />} />
-          <Route
-            path="/product/:id"
-            element={<ProductDetailPage onAddToCart={handleAddToCart} />}
-          />
-          <Route
-            path="/cart"
-            element={
-              <Cart
-                cartItems={cartItems}
-                onUpdateQuantity={handleUpdateQuantity}
-                onRemoveItem={handleRemoveItem}
-              />
-            }
-          />
-          <Route
-            path="/checkout"
-            element={
-              <Checkout cartItems={cartItems} onClearCart={handleClearCart} />
-            }
-          />
-          <Route path="/order-confirmation" element={<OrderConfirmation />} />
-        </Routes>
-
-        <AnimatePresence>
-          {showCartSidebar && (
-            <>
-              <div
-                className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
-                onClick={() => setShowCartSidebar(false)}
-              />
-              <CartSidebar
-                cartItems={cartItems}
-                onUpdateQuantity={handleUpdateQuantity}
-                onRemoveItem={handleRemoveItem}
-                onClose={() => setShowCartSidebar(false)}
-              />
-            </>
-          )}
-        </AnimatePresence>
-
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-      </div>
-    </BrowserRouter>
+<>
+      <RouterProvider router={router} />
+      
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </>
   );
 }
 

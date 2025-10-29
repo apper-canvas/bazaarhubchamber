@@ -8,7 +8,7 @@ import Cart from "@/components/pages/Cart";
 import { CartContext } from "@/components/organisms/Layout";
 const Checkout = () => {
   const navigate = useNavigate();
-  const { cartItems, handleClearCart } = useContext(CartContext);
+  const { cartItems } = useContext(CartContext);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     fullName: "",
@@ -51,7 +51,6 @@ const calculateTotal = () => {
 const handleSubmit = (e) => {
     e.preventDefault();
     const orderId = "ORD" + Date.now();
-    handleClearCart();
     toast.success("Order placed successfully!");
     navigate("/order-confirmation", { 
       state: { 

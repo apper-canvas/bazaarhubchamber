@@ -4,11 +4,11 @@ import Button from "@/components/atoms/Button";
 import { motion } from "framer-motion";
 import Empty from "@/components/ui/Empty";
 
-const Cart = ({ cartItems, onUpdateQuantity, onRemoveItem }) => {
+const Cart = ({ cartItems = [], onUpdateQuantity, onRemoveItem }) => {
   const navigate = useNavigate();
 
   const calculateSubtotal = () => {
-    return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+    return cartItems?.reduce((total, item) => total + (item.price * item.quantity), 0) || 0;
   };
 
   const calculateTax = () => {
@@ -18,8 +18,7 @@ const Cart = ({ cartItems, onUpdateQuantity, onRemoveItem }) => {
   const calculateTotal = () => {
     return calculateSubtotal() + calculateTax();
   };
-
-  if (cartItems.length === 0) {
+if (!cartItems || cartItems.length === 0) {
     return (
       <div className="container mx-auto px-4 py-16">
         <Empty
@@ -37,9 +36,9 @@ const Cart = ({ cartItems, onUpdateQuantity, onRemoveItem }) => {
       <h1 className="text-3xl font-bold text-gray-900 mb-8">Shopping Cart</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Cart Items */}
+{/* Cart Items */}
         <div className="lg:col-span-2 space-y-4">
-          {cartItems.map((item) => (
+          {cartItems?.map((item) => (
             <motion.div
               key={item.Id}
               layout
@@ -50,8 +49,8 @@ const Cart = ({ cartItems, onUpdateQuantity, onRemoveItem }) => {
             >
               <div className="flex gap-6">
                 <img
-                  src={item.images[0]}
-                  alt={item.title}
+                  src={item.images?.[0] || '/placeholder-product.jpg'}
+                  alt={item.title || 'Product'}
                   className="w-32 h-32 object-cover rounded-lg"
                 />
                 <div className="flex-1">

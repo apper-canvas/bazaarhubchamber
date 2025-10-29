@@ -7,13 +7,13 @@ import Error from "@/components/ui/Error";
 import { toast } from "react-toastify";
 
 const ProductDetailPage = () => {
-  const { addToCart } = useOutletContext();
+  const context = useOutletContext() || {};
+  const { addToCart } = context;
   const { id } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     loadProduct();
   }, [id]);
@@ -32,8 +32,16 @@ const ProductDetailPage = () => {
   };
 
 const handleAddToCart = (productData) => {
+    if (typeof addToCart !== 'function') {
+      toast.error('Unable to add to cart. Please refresh the page.');
+      return;
+    }
+    if (!productData) {
+      toast.error('Invalid product data');
+      return;
+    }
     addToCart(productData);
-    toast.success(`${productData.title} added to cart!`);
+    toast.success(`${productData?.title || 'Product'} added to cart!`);
   };
 
   const handleClose = () => {

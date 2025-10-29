@@ -47,20 +47,12 @@ function Layout() {
     setCartItems([]);
     toast.info('Cart cleared');
   };
-  return (
+return (
     <div className="min-h-screen bg-gray-50">
       <Header
         cartItemCount={cartItems.reduce((total, item) => total + item.quantity, 0)}
         onMenuClick={() => setShowCartSidebar(true)}
       />
-
-<Outlet context={{ 
-        cartItems, 
-        onAddToCart: handleAddToCart,
-        onUpdateQuantity: handleUpdateQuantity,
-        onRemoveItem: handleRemoveItem,
-        onClearCart: handleClearCart
-      }} />
 
       <AnimatePresence>
         {showCartSidebar && (
@@ -78,6 +70,18 @@ function Layout() {
           </>
         )}
       </AnimatePresence>
+
+      {/* Main Content */}
+      <main className="flex-1">
+        <Outlet context={{
+          addToCart: handleAddToCart,
+          updateQuantity: handleUpdateQuantity,
+          removeItem: handleRemoveItem,
+          clearCart: handleClearCart,
+          cartItems,
+          cartCount: cartItems.reduce((total, item) => total + item.quantity, 0)
+        }} />
+      </main>
 
       <ToastContainer
         position="top-right"

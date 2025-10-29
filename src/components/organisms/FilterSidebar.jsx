@@ -52,6 +52,27 @@ const FilterSidebar = ({ filters, onFilterChange, onClose }) => {
     });
   };
 
+const handleBrandToggle = (brand) => {
+    const newBrands = filters.brands.includes(brand)
+      ? filters.brands.filter(b => b !== brand)
+      : [...filters.brands, brand];
+    onFilterChange({ ...filters, brands: newBrands });
+  };
+
+  const handleColorToggle = (color) => {
+    const newColors = filters.colors.includes(color)
+      ? filters.colors.filter(c => c !== color)
+      : [...filters.colors, color];
+    onFilterChange({ ...filters, colors: newColors });
+  };
+
+  const handleSizeToggle = (size) => {
+    const newSizes = filters.sizes.includes(size)
+      ? filters.sizes.filter(s => s !== size)
+      : [...filters.sizes, size];
+    onFilterChange({ ...filters, sizes: newSizes });
+  };
+
   const handleStockToggle = () => {
     onFilterChange({
       ...filters,
@@ -59,16 +80,33 @@ const FilterSidebar = ({ filters, onFilterChange, onClose }) => {
     });
   };
 
-  const clearAllFilters = () => {
+const clearAllFilters = () => {
     onFilterChange({
       category: "All",
       subcategory: null,
       minPrice: undefined,
       maxPrice: undefined,
       minRating: undefined,
+      brands: [],
+      colors: [],
+      sizes: [],
       inStockOnly: false
     });
   };
+
+  const availableBrands = ["Apple", "Samsung", "Sony", "LG", "Dell", "HP", "Lenovo", "Asus", "Nike", "Adidas", "Puma", "Canon", "Nikon", "Bose", "JBL"];
+  const availableColors = [
+    { name: "Black", hex: "#000000" },
+    { name: "White", hex: "#FFFFFF" },
+    { name: "Gray", hex: "#9CA3AF" },
+    { name: "Blue", hex: "#3B82F6" },
+    { name: "Red", hex: "#EF4444" },
+    { name: "Green", hex: "#10B981" },
+    { name: "Yellow", hex: "#F59E0B" },
+    { name: "Purple", hex: "#A855F7" },
+    { name: "Pink", hex: "#EC4899" }
+  ];
+  const availableSizes = ["XS", "S", "M", "L", "XL", "2XL", "3XL"];
 
   if (loading) {
     return (
@@ -103,8 +141,7 @@ const FilterSidebar = ({ filters, onFilterChange, onClose }) => {
           </button>
         )}
       </div>
-
-      {/* Filter Content */}
+{/* Filter Content */}
       <div className="p-4 space-y-6 max-h-[calc(100vh-200px)] overflow-y-auto">
         {/* Categories */}
         <div>
@@ -147,6 +184,85 @@ const FilterSidebar = ({ filters, onFilterChange, onClose }) => {
           </div>
         </div>
 
+{/* Brand Filter */}
+        <div className="pt-6 border-t border-gray-200">
+          <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <ApperIcon name="Tag" size={18} />
+            Brand
+          </h3>
+          <div className="space-y-3 max-h-48 overflow-y-auto">
+            {availableBrands.map((brand) => (
+              <label key={brand} className="flex items-center gap-3 cursor-pointer group">
+                <input
+                  type="checkbox"
+                  checked={filters.brands.includes(brand)}
+                  onChange={() => handleBrandToggle(brand)}
+                  className="w-4 h-4 text-primary rounded focus:ring-2 focus:ring-primary"
+                />
+                <span className="text-sm text-gray-700 group-hover:text-primary transition-colors">
+                  {brand}
+                </span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {/* Color Filter */}
+        <div className="pt-6 border-t border-gray-200">
+          <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <ApperIcon name="Palette" size={18} />
+            Color
+          </h3>
+          <div className="flex flex-wrap gap-3">
+            {availableColors.map((color) => (
+              <button
+                key={color.name}
+                onClick={() => handleColorToggle(color.name)}
+                className={`relative w-10 h-10 rounded-full border-2 transition-all hover:scale-110 ${
+                  filters.colors.includes(color.name)
+                    ? "border-primary ring-2 ring-primary ring-offset-2"
+                    : "border-gray-300 hover:border-gray-400"
+                }`}
+                style={{ backgroundColor: color.hex }}
+                title={color.name}
+              >
+                {filters.colors.includes(color.name) && (
+                  <ApperIcon
+                    name="Check"
+                    size={16}
+                    className={`absolute inset-0 m-auto ${
+                      color.hex === "#FFFFFF" ? "text-gray-900" : "text-white"
+                    }`}
+                  />
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Size Filter */}
+        <div className="pt-6 border-t border-gray-200">
+          <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <ApperIcon name="Ruler" size={18} />
+            Size
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {availableSizes.map((size) => (
+              <button
+                key={size}
+                onClick={() => handleSizeToggle(size)}
+                className={`px-4 py-2 rounded-lg border-2 font-medium text-sm transition-all hover:scale-105 ${
+                  filters.sizes.includes(size)
+                    ? "bg-primary text-white border-primary"
+                    : "bg-white text-gray-700 border-gray-300 hover:border-primary"
+                }`}
+              >
+                {size}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Stock Filter */}
         <div className="pt-6 border-t border-gray-200">
           <label className="flex items-center gap-3 cursor-pointer">
@@ -159,7 +275,6 @@ const FilterSidebar = ({ filters, onFilterChange, onClose }) => {
             <span className="text-sm font-medium text-gray-700">In Stock Only</span>
           </label>
         </div>
-
         {/* Clear Filters */}
         <div className="pt-6 border-t border-gray-200">
           <Button

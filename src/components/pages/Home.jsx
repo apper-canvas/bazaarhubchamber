@@ -18,12 +18,15 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showMobileFilters, setShowMobileFilters] = useState(false);
-  const [filters, setFilters] = useState({
+const [filters, setFilters] = useState({
     category: "All",
     subcategory: null,
     minPrice: undefined,
     maxPrice: undefined,
     minRating: undefined,
+    brands: [],
+    colors: [],
+    sizes: [],
     inStockOnly: false
   });
 
@@ -160,12 +163,15 @@ const handleAddToCart = (product) => {
               message="No products found"
               description="Try adjusting your filters or search criteria"
               actionLabel="Clear Filters"
-              onAction={() => setFilters({
+onAction={() => setFilters({
                 category: "All",
                 subcategory: null,
                 minPrice: undefined,
                 maxPrice: undefined,
                 minRating: undefined,
+                brands: [],
+                colors: [],
+                sizes: [],
                 inStockOnly: false
               })}
             />

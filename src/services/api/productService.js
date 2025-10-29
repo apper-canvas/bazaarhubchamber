@@ -35,7 +35,7 @@ const productService = {
 
   async filterProducts(filters) {
     await delay(300);
-    let filtered = [...productsData];
+let filtered = [...productsData];
 
     if (filters.category && filters.category !== "All") {
       filtered = filtered.filter((p) => p.category === filters.category);
@@ -55,6 +55,37 @@ const productService = {
 
     if (filters.minRating !== undefined) {
       filtered = filtered.filter((p) => p.rating >= filters.minRating);
+    }
+
+    if (filters.brands && filters.brands.length > 0) {
+      filtered = filtered.filter((p) => {
+        const productBrand = p.specifications?.Brand;
+        return productBrand && filters.brands.includes(productBrand);
+      });
+    }
+
+    if (filters.colors && filters.colors.length > 0) {
+      filtered = filtered.filter((p) => {
+        const productColor = p.specifications?.Color;
+        return productColor && filters.colors.some(color => 
+          productColor.toLowerCase().includes(color.toLowerCase())
+        );
+      });
+    }
+
+    if (filters.sizes && filters.sizes.length > 0) {
+      filtered = filtered.filter((p) => {
+        const availableSizes = p.specifications?.["Available Sizes"];
+        if (!availableSizes) return false;
+        const sizesArray = typeof availableSizes === 'string' 
+          ? availableSizes.split(',').map(s => s.trim())
+          : Array.isArray(availableSizes) ? availableSizes : [];
+        return filters.sizes.some(size => 
+          sizesArray.some(availSize => 
+            availSize.toLowerCase() === size.toLowerCase()
+          )
+        );
+      });
     }
 
     if (filters.inStockOnly) {

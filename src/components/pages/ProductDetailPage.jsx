@@ -19,11 +19,11 @@ const ProductDetailPage = () => {
     loadProduct();
   }, [id]);
 
-  const loadProduct = async () => {
+const loadProduct = async () => {
     try {
       setLoading(true);
       setError(null);
-      const data = await productService.getProductById(id);
+      const data = await productService.getById(id);
       if (!data) {
         setError('Product not found');
       } else {

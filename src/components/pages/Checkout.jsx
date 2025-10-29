@@ -5,7 +5,7 @@ import Input from "@/components/atoms/Input";
 import Button from "@/components/atoms/Button";
 import { toast } from "react-toastify";
 
-const Checkout = ({ cartItems, onClearCart }) => {
+const Checkout = ({ cartItems = [], onClearCart }) => {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -20,8 +20,8 @@ const Checkout = ({ cartItems, onClearCart }) => {
   });
   const [errors, setErrors] = useState({});
 
-  const calculateTotal = () => {
-    const subtotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+const calculateTotal = () => {
+    const subtotal = cartItems?.reduce((total, item) => total + (item.price * item.quantity), 0) ?? 0;
     const tax = Math.round(subtotal * 0.18);
     return subtotal + tax;
   };
@@ -68,7 +68,7 @@ const Checkout = ({ cartItems, onClearCart }) => {
     }
   };
 
-  if (cartItems.length === 0) {
+if (!cartItems || cartItems.length === 0) {
     navigate("/cart");
     return null;
   }
@@ -340,8 +340,8 @@ const Checkout = ({ cartItems, onClearCart }) => {
           <div className="bg-white rounded-lg shadow-sm p-6 sticky top-24">
             <h2 className="text-xl font-bold text-gray-900 mb-6">Order Summary</h2>
             
-            <div className="space-y-4 mb-6">
-              {cartItems.map((item) => (
+<div className="space-y-4 mb-6">
+              {cartItems?.map((item) => (
                 <div key={item.Id} className="flex gap-3">
                   <img
                     src={item.images[0]}
@@ -358,7 +358,7 @@ const Checkout = ({ cartItems, onClearCart }) => {
                     </p>
                   </div>
                 </div>
-              ))}
+              )) ?? <p className="text-sm text-gray-600">No items in cart</p>}
             </div>
 
             <div className="border-t border-gray-200 pt-4">

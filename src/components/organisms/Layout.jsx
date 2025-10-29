@@ -1,13 +1,14 @@
-import { useState, useEffect } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import Header from "@/components/organisms/Header";
-import CartSidebar from "@/components/organisms/CartSidebar";
 import { toast } from "react-toastify";
+import CartSidebar from "@/components/organisms/CartSidebar";
+import Header from "@/components/organisms/Header";
+
+export const CartContext = createContext(null)
 
 function Layout() {
-  // Cart state management
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState([])
   const [showCartSidebar, setShowCartSidebar] = useState(false);
 
   const handleAddToCart = (product) => {
@@ -54,32 +55,34 @@ function Layout() {
     setCartItems([]);
   };
 
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <Header
-        cartItemCount={cartItems.reduce((total, item) => total + item.quantity, 0)}
-        onMenuClick={() => setShowCartSidebar(true)}
-      />
+return (
+    <CartContext.Provider value={{ 
+      cartItems, 
+      addToCart: handleAddToCart,
+      updateQuantity: handleUpdateQuantity,
+      removeItem: handleRemoveItem,
+      clearCart: handleClearCart
+    }}>
+      <div className="min-h-screen bg-gray-50">
+        <Header
+          cartItemCount={cartItems.reduce((total, item) => total + item.quantity, 0)}
+          onMenuClick={() => setShowCartSidebar(true)}
+        />
 
-      <Outlet context={{ cartItems, onAddToCart: handleAddToCart, onUpdateQuantity: handleUpdateQuantity, onRemoveItem: handleRemoveItem, onClearCart: handleClearCart }} />
+        <Outlet />
 
-      <AnimatePresence>
-        {showCartSidebar && (
-          <>
-            <div
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
-              onClick={() => setShowCartSidebar(false)}
-            />
+        <AnimatePresence>
+          {showCartSidebar && (
             <CartSidebar
-              cartItems={cartItems}
+              items={cartItems}
               onUpdateQuantity={handleUpdateQuantity}
               onRemoveItem={handleRemoveItem}
               onClose={() => setShowCartSidebar(false)}
             />
-          </>
-        )}
-      </AnimatePresence>
-    </div>
+          )}
+        </AnimatePresence>
+      </div>
+    </CartContext.Provider>
   );
 }
 

@@ -1,14 +1,16 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import productService from "@/services/api/productService";
 import ProductDetail from "@/components/organisms/ProductDetail";
+import { CartContext } from "@/components/organisms/Layout";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
-import { toast } from "react-toastify";
 
-const ProductDetailPage = ({ onAddToCart }) => {
+const ProductDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { addToCart } = useContext(CartContext);
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -21,18 +23,25 @@ const ProductDetailPage = ({ onAddToCart }) => {
     try {
       setLoading(true);
       setError(null);
-      const data = await productService.getById(id);
-      setProduct(data);
+      const data = await productService.getProductById(id);
+      if (!data) {
+        setError('Product not found');
+      } else {
+        setProduct(data);
+      }
     } catch (err) {
-      setError(err.message);
+      setError(err?.message || 'Failed to load product');
+      console.error('Product fetch error:', err);
     } finally {
       setLoading(false);
     }
   };
 
   const handleAddToCart = (productData) => {
-    onAddToCart(productData);
-    toast.success(`${productData.title} added to cart!`);
+    if (addToCart && productData) {
+      addToCart(productData);
+      toast.success(`${productData.title} added to cart!`);
+    }
   };
 
   const handleClose = () => {

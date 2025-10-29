@@ -1,9 +1,12 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import React from "react";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
-import { useNavigate } from "react-router-dom";
+import Checkout from "@/components/pages/Checkout";
+import Cart from "@/components/pages/Cart";
 
-const CartSidebar = ({ cartItems, onUpdateQuantity, onRemoveItem, onClose }) => {
+const CartSidebar = ({ onClose, cartItems = [], onUpdateQuantity, onRemoveItem }) => {
   const navigate = useNavigate();
 
   const calculateTotal = () => {

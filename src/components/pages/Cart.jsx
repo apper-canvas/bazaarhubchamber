@@ -1,10 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
-import { motion } from "framer-motion";
+import Checkout from "@/components/pages/Checkout";
+import { CartContext } from "@/components/organisms/Layout";
 import Empty from "@/components/ui/Empty";
 
-const Cart = ({ cartItems = [], onUpdateQuantity, onRemoveItem }) => {
+const Cart = () => {
+  const { cartItems, updateQuantity, removeItem } = useContext(CartContext);
   const navigate = useNavigate();
 
   const calculateSubtotal = () => {
@@ -18,7 +22,7 @@ const Cart = ({ cartItems = [], onUpdateQuantity, onRemoveItem }) => {
   const calculateTotal = () => {
     return calculateSubtotal() + calculateTax();
   };
-if (!cartItems || cartItems.length === 0) {
+if (cartItems.length === 0) {
     return (
       <div className="container mx-auto px-4 py-16">
         <Empty
@@ -38,7 +42,7 @@ if (!cartItems || cartItems.length === 0) {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 {/* Cart Items */}
         <div className="lg:col-span-2 space-y-4">
-          {cartItems?.map((item) => (
+{cartItems.map((item) => (
             <motion.div
               key={item.Id}
               layout
@@ -59,10 +63,10 @@ if (!cartItems || cartItems.length === 0) {
                       <p className="text-sm text-gray-500 mb-1">{item.brand}</p>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">
                         {item.title}
-                      </h3>
+</h3>
                     </div>
                     <button
-                      onClick={() => onRemoveItem(item.Id)}
+                      onClick={() => removeItem(item.Id)}
                       className="p-2 text-danger hover:bg-danger/10 rounded-lg transition-colors"
                     >
                       <ApperIcon name="Trash2" size={20} />
@@ -72,10 +76,10 @@ if (!cartItems || cartItems.length === 0) {
                     ₹{item.price.toLocaleString()}
                   </p>
                   <div className="flex items-center gap-4">
-                    <span className="text-sm font-medium text-gray-700">Quantity:</span>
+<span className="text-sm font-medium text-gray-700">Quantity:</span>
                     <div className="flex items-center gap-2">
                       <button
-                        onClick={() => onUpdateQuantity(item.Id, Math.max(1, item.quantity - 1))}
+                        onClick={() => updateQuantity(item.Id, Math.max(1, item.quantity - 1))}
                         className="w-10 h-10 flex items-center justify-center bg-gray-100 border border-gray-200 rounded-lg hover:bg-gray-200 transition-colors"
                       >
                         <ApperIcon name="Minus" size={18} />
@@ -84,7 +88,7 @@ if (!cartItems || cartItems.length === 0) {
                         {item.quantity}
                       </span>
                       <button
-                        onClick={() => onUpdateQuantity(item.Id, item.quantity + 1)}
+                        onClick={() => updateQuantity(item.Id, item.quantity + 1)}
                         className="w-10 h-10 flex items-center justify-center bg-gray-100 border border-gray-200 rounded-lg hover:bg-gray-200 transition-colors"
                       >
                         <ApperIcon name="Plus" size={18} />

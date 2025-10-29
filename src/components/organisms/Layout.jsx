@@ -8,9 +8,21 @@ import Header from "@/components/organisms/Header";
 export const CartContext = createContext(null)
 
 function Layout() {
-  const [cartItems, setCartItems] = useState([])
+const [cartItems, setCartItems] = useState([]);
   const [showCartSidebar, setShowCartSidebar] = useState(false);
 
+  // Load cart from localStorage on mount
+  useEffect(() => {
+    const savedCart = localStorage.getItem("bazaarhub_cart");
+    if (savedCart) {
+      setCartItems(JSON.parse(savedCart));
+    }
+  }, []);
+
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("bazaarhub_cart", JSON.stringify(cartItems));
+  }, [cartItems]);
 const handleAddToCart = (product) => {
     setCartItems((prevItems) => {
       const existingItem = prevItems.find((item) => item.Id === product.Id);
@@ -57,7 +69,7 @@ const handleAddToCart = (product) => {
 
 return (
     <CartContext.Provider value={{ 
-      cartItems, 
+      cartItems,
       addToCart: handleAddToCart,
       updateQuantity: handleUpdateQuantity,
       removeItem: handleRemoveItem,
@@ -70,13 +82,9 @@ return (
         />
 
         <Outlet />
-
-        <AnimatePresence>
+<AnimatePresence>
           {showCartSidebar && (
             <CartSidebar
-              items={cartItems}
-              onUpdateQuantity={handleUpdateQuantity}
-              onRemoveItem={handleRemoveItem}
               onClose={() => setShowCartSidebar(false)}
             />
           )}

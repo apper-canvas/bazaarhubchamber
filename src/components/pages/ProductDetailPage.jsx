@@ -1,5 +1,5 @@
-import { useState, useEffect, } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate, useOutletContext } from "react-router-dom";
 import productService from "@/services/api/productService";
 import ProductDetail from "@/components/organisms/ProductDetail";
 import Loading from "@/components/ui/Loading";

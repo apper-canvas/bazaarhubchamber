@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useOutletContext } from "react";
 import { useNavigate } from "react-router-dom";
 import ApperIcon from "@/components/ApperIcon";
 import Input from "@/components/atoms/Input";
 import Button from "@/components/atoms/Button";
 import { toast } from "react-toastify";
 
-const Checkout = ({ cartItems, onClearCart }) => {
+const Checkout = () => {
+  const { cartItems, onClearCart } = useOutletContext();
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({

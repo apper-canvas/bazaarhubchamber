@@ -3,8 +3,11 @@ import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
 import { motion } from "framer-motion";
 import Empty from "@/components/ui/Empty";
+import { useOutletContext } from "react-router-dom";
 
-const Cart = ({ cartItems, onUpdateQuantity, onRemoveItem }) => {
+const Cart = () => {
+  const { cartItems, onUpdateQuantity, onRemoveItem } = useOutletContext();
+
   const navigate = useNavigate();
 
   const calculateSubtotal = () => {

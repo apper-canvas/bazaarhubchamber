@@ -9,8 +9,11 @@ import Empty from "@/components/ui/Empty";
 import ApperIcon from "@/components/ApperIcon";
 import { toast } from "react-toastify";
 import { motion, AnimatePresence } from "framer-motion";
+import { useOutletContext } from "react-router-dom";
 
-const Home = ({ onAddToCart }) => {
+const Home = () => {
+  const { onAddToCart } = useOutletContext();
+
   const [searchParams] = useSearchParams();
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
